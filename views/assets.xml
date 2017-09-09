@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    @author Dave Lasley <dave@laslabs.com>
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+
+<odoo>
+      <data>
+            <template id="asf_assets_backend" name="Open Mobile Assets" inherit_id="web.assets_backend">
+                  <xpath expr=".">
+                        <link rel="stylesheet" href="/asf-theme/static/src/css/base.css" type="text/css"/>
+                        <link rel="stylesheet" href="/asf-theme/static/src/css/component_ui.min.css" type="text/css"/>
+                        <link rel="stylesheet" href="/asf-theme/static/src/css/skins/component_ui_black.css" type="text/css" id="defaultTheme" />
+                        <link rel="stylesheet" href="/asf-theme/static/src/css/custom.css" type="text/css"/>
+
+                        <script src="/asf-theme/static/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+                        <!-- <script src="/asf-theme/static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> -->
+                        <script src="/asf-theme/static/plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+                        <script src="/asf-theme/static/plugins/lobipanel/lobipanel.min.js" type="text/javascript"></script>
+                        <script src="/asf-theme/static/plugins/animsition/js/animsition.min.js" type="text/javascript"></script>
+                        <script src="/asf-theme/static/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
+                        <script src="/asf-theme/static/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+                        <!-- STRAT PAGE LABEL PLUGINS -->
+                        <script src="/asf-theme/static/plugins/summernote/summernote.js" type="text/javascript"></script>
+
+                        <script type="text/javascript" src="/asf-theme/static/src/js/app.js"></script>
+                        <script type="text/javascript" src="/asf-theme/static/src/js/jQuery.style.switcher.js"></script>
+
+
+                  </xpath>
+            </template>
+	</data>
+</odoo>

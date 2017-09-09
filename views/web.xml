@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <template id="webclient_bootstrap"
+              inherit_id="web.webclient_bootstrap"
+              name="App Drawer - Web Client"
+              >
+
+        <xpath expr="//div[@class='navbar-collapse collapse']" position="before">
+            <t t-set="body_classname" t-value="''" />
+            <div>Hey!!!</div>
+            <!-- <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="material-icons">apps</i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img class="main-logo" src="asf-theme/static/src/img/light-logo.png" alt=""/>
+                </a>
+            </div> -->
+        </xpath>
+
+        <!-- <xpath expr="//ul[@class='nav']" position="before">
+            <t t-set="body_classname" t-value="''" />
+            <li><a id="fullscreen" href="#"><i class="material-icons">fullscreen</i> </a></li>
+        </xpath> -->
+
+    </template>
+
+    <!-- <template id="layout_logo_show" inherit_id="website.layout" customize_show="True" name="Show Logo">
+        <xpath expr="//header//a[@class='navbar-brand']" position="replace">
+            <a href="/" class="navbar-brand logo">
+                <img src="/logo.png" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+            </a>
+        </xpath>
+    </template> -->
+
+    <template id="webclient_bootstrap"
+              inherit_id="web.webclient_bootstrap"
+              name="AsF">
+        
+        <xpath expr="//nav[@id='oe_main_menu_navbar']" position="attributes">
+            <attribute name="role">navigation</attribute>
+        </xpath>
+
+        <!-- <xpath expr="//ul[@class='nav']" position="before">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="material-icons">apps</i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img class="main-logo" src="asf-theme/static/src/img/light-logo.png" alt=""/>
+                </a>
+            </div>
+        </xpath> -->
+
+        <!-- <xpath expr="//div[@class='navbar-header']" position="inside">
+            <div>
+                <a t-att-href="'/web/?debug' if debug else '/web'">
+                    <img src="/asf-theme/static/src/img/light-logo.png" alt="Company Logo"/>
+                </a>
+            </div>
+        </xpath> -->
+    </template>
+    
+    <!-- navigation: dark to white -->
+    <!-- <template id="menu" 
+              inherit_id="web.menu" 
+              name="Web Menu">
+      <xpath expr="//ul" position="before">
+
+        <div class="simple-logo">
+          <a t-att-href="'/web/?debug' if debug else '/web'">
+            <img src="/asf-theme/static/src/img/light-logo.png" alt="Company Logo"/>
+          </a>
+        </div>
+
+      </xpath>
+    </template> -->
+
+    <template id="menu_secondary" inherit_id="web.menu_secondary">
+      <!-- remove logo in navbar -->
+      <xpath expr="//a" position="replace">
+        <!-- simple moved logo into header -->
+      </xpath>
+
+      <xpath expr="//div" position="after">
+        <div id="slider_strip">
+          <i class="fa fa-arrow-left"></i>
+        </div>
+      </xpath>
+    </template>
+
+     <template id="web_menu_secondary" inherit_id="web.menu_secondary" name="App Drawer - Secondary Submenu">
+        <xpath expr="//div[@class='o_sub_menu_content']/t"  position="replace">
+            <t t-foreach="menu_data['children']" t-as="menu">
+                    <div style="display: none" class="oe_secondary_menu" t-att-data-menu-parent="menu['id']">
+                        <div>0</div>
+                        <ul class="nav" id="side-menu">
+                        <t t-foreach="menu['children']" t-as="menu">
+                            <div>1</div>
+                                <t t-if="menu['children']">
+                                    <div>2</div>
+                                    <!-- <div class="oe_secondary_menu_section" t-att-data-menu-xmlid="menu.get('xmlid')">
+                                        <t t-esc="menu['name']"/>
+                                    </div> -->
+                                    <li desc="menu['children']">
+                                        <t t-esc="menu['name']"/>
+                                    </li>
+                                </t>
+                                <t t-if="not menu['children']">
+                                    <div>3</div>
+                                    <div class="oe_secondary_menu_section menu_link" t-att-data-menu-xmlid="menu.get('xmlid')">
+                                        <t t-call="web.menu_link" />
+                                    </div>
+                                    <li desc="not menu['children']">
+                                        <a href="index.html" class="material-ripple" aria-expanded="false"><i class="material-icons">home</i> <t t-esc="menu['name']"/> </a>
+                                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                            <li><a href="charts_flot.html">Flot Chart</a></li>
+                                            <li><a href="charts_Js.html">Chart js</a></li>
+                                            <li><a href="charts_morris.html">Morris Charts</a></li>
+                                            <li><a href="charts_sparkline.html">Sparkline Charts</a></li>
+                                            <li><a href="charts_am.html">Am Charts</a></li>
+                                        </ul>
+                                    </li>
+                                </t>
+                            <!-- <t t-call="web.menu_secondary_submenu"/> -->
+                        </t>
+                        </ul>
+                    </div>
+                </t>
+            <!-- <ul class="nav" id="side-menu">
+                <t t-foreach="menu_data['children']" t-as="menu">
+                    <li t-att-data-menu-parent="menu['id']">
+                        <a href="index.html" class="material-ripple"><i class="material-icons">home</i> <t t-esc="menu['name']"/></a>
+                    </li>
+                </t>
+            </ul> -->
+        </xpath>
+    </template>
+</odoo>
