@@ -645,18 +645,18 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.sidebar ul li a i {
+.sidebar ul li div a i {
     color: #98a7b7;
     font-size: 21px;
     margin-right: 7px;
     vertical-align: middle;
 }
 
-.sidebar ul li:nth-child(2) a i {
+.sidebar ul div li:nth-child(2) a i {
     color: #558B2F;
 }
 
-.sidebar ul li:nth-child(3) a i {
+.sidebar ul div li:nth-child(3) a i {
     color: #cd6724;
 }
 

@@ -98,51 +98,56 @@
       </xpath>
     </template>
 
-     <template id="web_menu_secondary" inherit_id="web.menu_secondary" name="App Drawer - Secondary Submenu">
+    <template id="web.menu_link_asf">
+        <t t-set="debug_param" t-value="'?&amp;debug=' if debug else ''"/>
+        <a t-att-href="'/web%s#menu_id=%s&amp;action=%s' % (debug_param, menu['id'], menu['action'] and menu['action'].split(',')[1] or '')"
+            t-att-class="'material-ripple'"
+            t-att-data-menu="menu['id']"
+            t-att-data-menu-xmlid="menu.get('xmlid')"
+            t-att-data-action-model="menu['action'] and menu['action'].split(',')[0] or None"
+            t-att-data-action-id="menu['action'] and menu['action'].split(',')[1] or None">
+                <t t-esc="menu['name']"/>
+        </a>
+    </template>
+
+    <template id="web_menu_secondary" inherit_id="web.menu_secondary" name="App Drawer - Secondary Submenu">
+        <xpath expr="//div[@class='o_sub_menu_content']/t"  position="attributes">
+            <attribute name="class">o_sub_menu_content sidebar-nav navbar-collapse</attribute>
+        </xpath>
         <xpath expr="//div[@class='o_sub_menu_content']/t"  position="replace">
+            <ul class="nav" id="side-menu">
+            <li class="nav-heading "> <span>Main Navigation</span></li>
             <t t-foreach="menu_data['children']" t-as="menu">
-                    <div style="display: none" class="oe_secondary_menu" t-att-data-menu-parent="menu['id']">
-                        <div>0</div>
-                        <ul class="nav" id="side-menu">
+                <div data="menu_data_children" style="display: none" class="oe_secondary_menu" t-att-data-menu-parent="menu['id']">
+                    <li>
                         <t t-foreach="menu['children']" t-as="menu">
-                            <div>1</div>
-                                <t t-if="menu['children']">
-                                    <div>2</div>
-                                    <!-- <div class="oe_secondary_menu_section" t-att-data-menu-xmlid="menu.get('xmlid')">
-                                        <t t-esc="menu['name']"/>
-                                    </div> -->
-                                    <li desc="menu['children']">
-                                        <t t-esc="menu['name']"/>
-                                    </li>
-                                </t>
-                                <t t-if="not menu['children']">
-                                    <div>3</div>
-                                    <div class="oe_secondary_menu_section menu_link" t-att-data-menu-xmlid="menu.get('xmlid')">
-                                        <t t-call="web.menu_link" />
-                                    </div>
-                                    <li desc="not menu['children']">
-                                        <a href="index.html" class="material-ripple" aria-expanded="false"><i class="material-icons">home</i> <t t-esc="menu['name']"/> </a>
-                                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                            <li><a href="charts_flot.html">Flot Chart</a></li>
-                                            <li><a href="charts_Js.html">Chart js</a></li>
-                                            <li><a href="charts_morris.html">Morris Charts</a></li>
-                                            <li><a href="charts_sparkline.html">Sparkline Charts</a></li>
-                                            <li><a href="charts_am.html">Am Charts</a></li>
-                                        </ul>
-                                    </li>
-                                </t>
+                            <t t-if="menu['children']">
+                                <!-- <div data="menu_children" class="oe_secondary_menu_section" t-att-data-menu-xmlid="menu.get('xmlid')">
+                                    <t t-esc="menu['name']"/>
+                                </div> -->
+                                <li>
+                                    <a href="#" class="material-ripple" aria-expanded="false">
+                                        <div class="material-ink animate" style="height: 247px; width: 247px; top: -88.5px; left: -47.5px;"></div>
+                                        <i class="material-icons">bubble_chart</i> <t t-esc="menu['name']"/><span class="fa arrow"></span>
+                                    </a>
+                                    <t t-call="web.menu_secondary_submenu"/>
+                                </li>
+                            </t>
+                            <t t-if="not menu['children']">
+                                <li>
+                                    <!-- <div data="not_menu_children" class="oe_secondary_menu_section menu_link" t-att-data-menu-xmlid="menu.get('xmlid')"> -->
+                                        <t t-call="web.menu_link_asf" />
+                                    <!-- </div> -->
+                                    <t t-call="web.menu_secondary_submenu"/>
+                                </li>
+                            </t>
                             <!-- <t t-call="web.menu_secondary_submenu"/> -->
                         </t>
-                        </ul>
-                    </div>
-                </t>
-            <!-- <ul class="nav" id="side-menu">
-                <t t-foreach="menu_data['children']" t-as="menu">
-                    <li t-att-data-menu-parent="menu['id']">
-                        <a href="index.html" class="material-ripple"><i class="material-icons">home</i> <t t-esc="menu['name']"/></a>
                     </li>
-                </t>
-            </ul> -->
+                </div>
+            </t>
+            </ul>
         </xpath>
     </template>
+
 </odoo>

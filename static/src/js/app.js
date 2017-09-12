@@ -2,6 +2,8 @@ $(document).ready(function () {
 
     "use strict"; // Start of use strict
 
+    $(".o_view_manager_content").perfectScrollbar();          // Initialize
+    
     $(".animsition").animsition({
         inClass: 'fade-in',
         outClass: 'fade-out',
@@ -216,15 +218,20 @@ $(document).ready(function () {
         var fsDocButton = document.getElementById("fullscreen");
         var fsExitDocButton = document.getElementById("fullscreen");
 
-        fsDocButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            requestFullscreen(document.documentElement);
-        });
-
-        fsExitDocButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            exitFullscreen();
-        });
+        if(fsDocButton) {
+            fsDocButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                requestFullscreen(document.documentElement);
+            });
+        }
+        
+        if(fsExitDocButton) {
+            fsExitDocButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                exitFullscreen();
+            });
+        }
+        
     });
 
 
